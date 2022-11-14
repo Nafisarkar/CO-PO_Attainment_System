@@ -27,11 +27,6 @@ def openfile():
             print(file_csv_data.iloc[i][2])
             print(file_csv_data.iloc[i][3])
             
-            
-
-
-
-
 
 def submit():
     print("->Submit button pressed")
@@ -39,7 +34,7 @@ def submit():
 
 
 window = Tk()
-os.system("cls")
+os.system("clear")
 window.title("Co Po Attenment System")
 window.geometry("260x300")
 window.option_add("*font", "Helvetica 8 bold")
@@ -49,6 +44,8 @@ name_lable = Label(
     text="Name",
 )
 
+DownLoad_template = Button(window, text="Get Template", command=openfile)
+DownLoad_template.grid(column=0, row=0, padx=5, pady=5, sticky=W + E)
 
 submit_btn = Button(window, width=10, text="Submit", command=submit)
 submit_btn.grid(column=0, row=4, padx=5, pady=5, sticky=E)
