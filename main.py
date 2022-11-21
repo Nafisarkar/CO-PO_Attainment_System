@@ -5,6 +5,7 @@ from openpyxl import load_workbook
 import pandas as pd
 import os
 
+box= []
 
 def starting_row():
     return 22
@@ -38,13 +39,36 @@ def get_all_student_id(df2):
 
 def print_name_id_serial_ (df):
     df2 = list(df["SL"])
+    
     start = starting_row()
     ending = get_total_student_count(df2)
     print("starting row: ", start)
     print("ending row: ", ending)
     for i in range(0, ending):
-        print(list(df[['SL' , 'Name', 'ID']].iloc[i]))
-    
+        temp_lis = list(df[['SL' , 'Name', 'ID']].iloc[i])
+        print(temp_lis)
+        box.append(temp_lis)
+
+#gets the exect value from the cell
+def get_num(filename, column="O", row=21):
+    """Read a single cell value from an Excel file"""
+    return pd.read_excel(filename, skiprows=row - 1, usecols=column, nrows=1, header=None, names=["Value"]).iloc[0]["Value"]
+
+#getting the sum of a student 
+def student_sum(filename, row=23, total=0):
+    #co_index = ['E','F','G','H','J','K','L','M']
+    co_index = ['E','F','G','H','J','K','L']
+    sum = 0
+    df = pd.read_excel(filename, skiprows=21)
+    status["text"] = "Processing : " + "Data"  
+    for j in range(total):
+        for i in range(7):
+            #print(get_num(filename, co_index[i], row))
+            sum += get_num(filename, co_index[i], row)
+        print(f"{box[j]} got numbers in total  {j}: ", sum)
+        row= row+1
+        sum = 0
+
 
 #handles file selection and file reading and branching
 def openfile():
@@ -63,7 +87,9 @@ def openfile():
         print_name_id_serial_(df)
         df2 = list(df["SL"])
         #get_last_row(df2)
+        total = get_total_student_count(df2)
         print("total student: ", get_total_student_count(df2))
+        student_sum(filename, 23, total)
         #status["text"] = "Total Student: " + str(ts_count)
         #print("last_row number: ", get_last_row(df2))
         
