@@ -12,8 +12,9 @@ def statidle():
 def openfile():
     filename = filedialog.askopenfilename(
         initialdir="/",
-        title="Select CSV/Excel",
-        filetypes=(("csv files", "*.csv"), ("xlsx files", "*.xlsx")),
+        title="Select Excel",
+        filetypes=(("xlsx files", "*.xlsx"),("csv files", "*.csv")),
+        # filetypes=(("csv files", "*.csv"), ("xlsx files", "*.xlsx")),
     )
     print(filename)
     if filename == "":
