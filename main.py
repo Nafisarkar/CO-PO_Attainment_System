@@ -340,8 +340,6 @@ def center(win):
     win.geometry('{}x{}+{}+{}'.format(width, height, x, y))
     win.deiconify()
 
-
-
 #main window
 window = tk.Tk()
 
@@ -356,17 +354,11 @@ window.geometry("400x130")
 #globally sets the font
 window.option_add("*font", "Helvetica 8 bold")
 
-
-
 main_frame = tk.Frame(window, background='white')
 main_frame.pack(fill="both", expand=True)
 
-
-
 s = ttk.Style()
 s.configure('TButton', font=('Helvetica', 8, 'bold') ,background='#7AC5CD')
-
-
 
 submit_btn = ttk.Button(main_frame, width=30, text="Submit" ,command=submit  )
 submit_btn.grid( row=0,column=0, padx=5, pady=10 ,sticky='W')
@@ -386,9 +378,9 @@ def popup_bonus():
     pop_name_entry.pack(padx=5, pady=10)
 
     
-    pop = ttk.Button(win, text="Submit",width=40, command=win.destroy )
+    pop = ttk.Button(win, text="Exit",width=40, command=win.destroy )
     pop.pack(padx=5, pady=10)
-    save_name = ttk.Button(win, text="save",width=40, command=save )
+    save_name = ttk.Button(win, text="Save",width=40, command=save )
     save_name.pack(padx=5, pady=10)
     center(win)
     
